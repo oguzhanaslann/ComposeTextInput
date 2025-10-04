@@ -1,9 +1,11 @@
 package com.oguzhanaslann.compose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,9 +18,11 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.foundation.text.input.InputTransformation.Companion.transformInput
 import androidx.compose.foundation.text.input.TextFieldBuffer
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextObfuscationMode
+import androidx.compose.foundation.text.input.delete
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -50,6 +54,8 @@ import androidx.compose.ui.unit.sp
 import com.oguzhanaslann.compose.ui.OtpTextField
 import com.oguzhanaslann.compose.ui.RichContentTextField
 import com.oguzhanaslann.compose.ui.theme.ComposeTextInputTheme
+import kotlin.math.max
+import kotlin.math.min
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,7 +87,6 @@ fun MainScreen() {
         AssistiveTextField()
         AutofillTextField()
         TextObfuscationTextField()
-        NumberTextField()
         OtpTextField()
         RichContentTextField()
         AutoResizingTextField()
@@ -124,16 +129,12 @@ fun TransformationsField() {
 
 private fun TextFieldBuffer.filterAstrixReverting() {
     val text = originalText.toString()
-    if (text.contains("*")) {
-       revertAllChanges()
-    }
-}
-
-private fun TextFieldBuffer.filterAstrix() {
-    val text = originalText.toString()
-    if (text.contains("*")) {
-        val password = text.replace("*", "")
-        replace(0, text.length, password)
+    val indicesOfAstrix = text.indexOf('*')
+    if (indicesOfAstrix != -1) {
+        delete(
+            start = max(0, indicesOfAstrix),
+            end = min(indicesOfAstrix + 1,length)
+        )
     }
 }
 
@@ -168,9 +169,9 @@ private fun AssistiveTextField() {
     val user = rememberTextFieldState()
     TextField(
         state = user,
-        placeholder = { Text("New State Field") },
+        placeholder = { Text("Assistive State Field") },
         supportingText = { Text("This is supporting text") },
-        isError = false
+        isError = user.text.length > 3
     )
 }
 
@@ -220,25 +221,6 @@ private fun TextObfuscationTextField() {
         textObfuscationMode = if (isObfuscated) TextObfuscationMode.Visible else TextObfuscationMode.Hidden
     )
 }
-
-@Composable
-private fun NumberTextField() {
-    val text = rememberTextFieldState()
-
-    TextField(
-        state = text,
-        inputTransformation = { filterNumbers() },
-        placeholder = { Text("Number Field") },
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Number
-        ),
-    )
-}
-
-private fun TextFieldBuffer.filterNumbers() {
-    val text = originalText.toString()
-}
-
 
 @Composable
 fun AutoResizingTextField() {
