@@ -113,10 +113,24 @@ fun Digit(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun prevOtpField() {
     ComposeTextInputTheme {
         OtpTextField()
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+private fun previewDigits() {
+    Row(
+        modifier = Modifier.padding(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Digit('1', true)
+        Digit('2', false)
+        Digit('3', false)
     }
 }

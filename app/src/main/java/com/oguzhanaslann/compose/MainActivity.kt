@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,6 +19,7 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.InputTransformation.Companion.transformInput
 import androidx.compose.foundation.text.input.TextFieldBuffer
 import androidx.compose.foundation.text.input.TextFieldLineLimits
@@ -43,6 +45,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.autofill.ContentType
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalAutofillManager
 import androidx.compose.ui.semantics.contentType
 import androidx.compose.ui.semantics.semantics
@@ -90,6 +93,7 @@ fun MainScreen() {
         OtpTextField()
         RichContentTextField()
         AutoResizingTextField()
+        Spacer(Modifier.size(16.dp))
     }
 }
 
@@ -227,7 +231,8 @@ fun AutoResizingTextField() {
     val state = rememberTextFieldState("Auto Resizing Field")
     BasicTextField(
         state = state,
-        modifier = Modifier.size(120.dp, 64.dp), // not a best practise 
+        modifier = Modifier.size(120.dp, 64.dp)
+            .border(1.dp, color = Color.Black), // not a best practise
         decorator = { _ ->
             BasicText(
                 text = state.text.toString(),
