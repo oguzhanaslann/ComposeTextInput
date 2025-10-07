@@ -58,6 +58,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.oguzhanaslann.compose.autofill.AutofillTextField
 import com.oguzhanaslann.compose.ui.OtpTextField
 import com.oguzhanaslann.compose.ui.RichContentTextField
 import com.oguzhanaslann.compose.ui.theme.ComposeTextInputTheme
@@ -183,36 +184,7 @@ private fun AssistiveTextField() {
     )
 }
 
-@Composable
-private fun AutofillTextField() {
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        val autofill = LocalAutofillManager.current
-        val user = rememberTextFieldState()
-        TextField(
-            state = user,
-            modifier = Modifier
-                .weight(0.5f)
-                .semantics {
-                    contentType = ContentType.EmailAddress
-                },
-            placeholder = { Text("Autofill Field") },
-            keyboardOptions = KeyboardOptions.Default.copy(
-                keyboardType = KeyboardType.Email
-            )
-        )
 
-        Spacer(modifier = Modifier.padding(4.dp))
-
-        Button(
-            modifier = Modifier.weight(0.5f),
-            onClick = { autofill?.commit() }
-        ) {
-            Text("Autofill")
-        }
-    }
-}
 
 @Composable
 private fun TextObfuscationTextField() {
