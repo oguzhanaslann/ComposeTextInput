@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".autofill.AutofillActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="emailAddress"
+        android:hint="Autofill Email"
+        android:importantForAutofill="yes"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="password"
+        android:hint="Autofill Password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/manual_fill_set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="manual Autofill"
+        android:inputType="text" />
+</LinearLayout>
