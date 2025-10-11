@@ -5,27 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".autofill.AutofillActivity">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autofillHints="emailAddress"
-        android:hint="Autofill Email"
+        android:autofillHints="username"
+        android:hint="UserName"
         android:importantForAutofill="yes"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints="password"
-        android:hint="Autofill Password"
-        android:inputType="textPassword" />
+         />
 
     <EditText
         android:id="@+id/manual_fill_set"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="manual Autofill"
+        android:hint="Manual UserName"
         android:inputType="text" />
 </LinearLayout>

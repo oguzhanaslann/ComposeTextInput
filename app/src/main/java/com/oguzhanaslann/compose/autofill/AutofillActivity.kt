@@ -23,7 +23,7 @@ class AutofillActivity : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val password = findViewById<EditText>(R.id.manual_fill_set)
-            password.setAutofillHints(View.AUTOFILL_HINT_NAME)
+            password.setAutofillHints(View.AUTOFILL_HINT_USERNAME)
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.oguzhanaslann.compose
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -51,6 +52,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.autofill.ContentType
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalAutofillManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentType
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
@@ -58,10 +60,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.oguzhanaslann.compose.autofill.AutofillActivity
 import com.oguzhanaslann.compose.autofill.AutofillTextField
 import com.oguzhanaslann.compose.ui.OtpTextField
 import com.oguzhanaslann.compose.ui.RichContentTextField
 import com.oguzhanaslann.compose.ui.theme.ComposeTextInputTheme
+import kotlin.jvm.java
 import kotlin.math.max
 import kotlin.math.min
 
