@@ -16,5 +16,7 @@
 local.properties
 Text_input.md
 Text_Input_Notes.md
+Rich_Media_Input.md
 /app/src/main/java/com/oguzhanaslann/compose/autofill/auto_fill.md
 /app/src/main/java/com/oguzhanaslann/compose/autofill/auto_fill_notes.md
+/Rich_Content_Input_Compose.md
